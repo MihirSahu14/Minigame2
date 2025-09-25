@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cos4lasvbucws"]
+
+[ext_resource type="Script" uid="uid://k25lwnw3ifp3" path="res://lighthouse.gd" id="1_yevh3"]
+
+[node name="Lighthouse" type="Node2D"]
+script = ExtResource("1_yevh3")
+
+[node name="BeamPivot" type="Node2D" parent="."]
+
+[node name="BeamVisual" type="Polygon2D" parent="BeamPivot"]
+color = Color(1, 1, 0, 0.5921569)
+polygon = PackedVector2Array(0, -60, 0, 60, 420, 0)
