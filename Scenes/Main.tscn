@@ -1,0 +1,79 @@
+[gd_scene load_steps=23 format=3 uid="uid://rm0h5yygost6"]
+
+[ext_resource type="PackedScene" uid="uid://cos4lasvbucws" path="res://Scenes/lighthouse.tscn" id="1_idj7w"]
+[ext_resource type="Script" uid="uid://2lw0pb2ks15h" path="res://Scenes/main.gd" id="1_kln2b"]
+[ext_resource type="PackedScene" uid="uid://cpi200ed2a65v" path="res://Scenes/ship.tscn" id="2_kln2b"]
+[ext_resource type="Texture2D" uid="uid://4gv1l2qkbakw" path="res://Explosion frames/pixil-frame-0.png" id="3_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://0jwp0lpa5lva" path="res://Explosion frames/pixil-frame-1.png" id="4_bmxlf"]
+[ext_resource type="Texture2D" uid="uid://c7jjad2tv0ryx" path="res://Explosion frames/pixil-frame-2.png" id="5_4kpch"]
+[ext_resource type="Texture2D" uid="uid://dp4f31mqcr1g3" path="res://Energy Bar/Energy Bar Version1.png" id="6_0sclb"]
+[ext_resource type="Texture2D" uid="uid://dq48q1ngcuhty" path="res://Energy Bar/Energy Bar -1.png" id="7_fq0cl"]
+[ext_resource type="Texture2D" uid="uid://dgfug4rcvpnym" path="res://Energy Bar/Energy Bar -2.png" id="7_sxkr1"]
+[ext_resource type="Texture2D" uid="uid://cmtaylw273ppp" path="res://Energy Bar/Energy Bar -3.png" id="8_fq0cl"]
+[ext_resource type="Texture2D" uid="uid://bg47isemp8iny" path="res://Energy Bar/Energy Bar -4.png" id="9_hwpts"]
+[ext_resource type="Texture2D" uid="uid://bk62hcbob8nx8" path="res://Energy Bar/Energy Bar -5.png" id="10_jyqft"]
+[ext_resource type="Texture2D" uid="uid://dwr6p0a11meaf" path="res://Energy Bar/Energy Bar -6.png" id="11_3tgeq"]
+[ext_resource type="Texture2D" uid="uid://bw020fhmc7x4u" path="res://Energy Bar/Energy Bar -7.png" id="12_c4ay3"]
+[ext_resource type="Texture2D" uid="uid://dcdibt8hkqgxf" path="res://Energy Bar/Energy Bar -8.png" id="13_aht7i"]
+[ext_resource type="Texture2D" uid="uid://dutb737dsf8qj" path="res://Energy Bar/Energy Bar -9.png" id="14_5jffn"]
+[ext_resource type="Texture2D" uid="uid://dkm3biqqmknm" path="res://Energy Bar/Energy Bar Empty.png" id="15_kpo4j"]
+[ext_resource type="FontFile" uid="uid://en6f2o6r1xgt" path="res://m5x7.ttf" id="18_fq0cl"]
+[ext_resource type="Texture2D" uid="uid://bgxd1d34brsom" path="res://Background Animation/Background Frame2.png" id="19_fq0cl"]
+[ext_resource type="Texture2D" uid="uid://c2wf7bx5rm8es" path="res://Background Animation/Background Frame3.png" id="20_hwpts"]
+[ext_resource type="Texture2D" uid="uid://f83kh3i7y88l" path="res://Background Animation/Background Version2.png" id="21_jyqft"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kln2b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_fq0cl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_hwpts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_jyqft")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Main" type="Node2D"]
+position = Vector2(20, 20)
+script = ExtResource("1_kln2b")
+boat_scene = ExtResource("2_kln2b")
+explosion_frames = Array[Texture2D]([ExtResource("3_vy5pj"), ExtResource("4_bmxlf"), ExtResource("5_4kpch")])
+energy_frames = Array[Texture2D]([ExtResource("15_kpo4j"), ExtResource("14_5jffn"), ExtResource("13_aht7i"), ExtResource("12_c4ay3"), ExtResource("11_3tgeq"), ExtResource("10_jyqft"), ExtResource("9_hwpts"), ExtResource("8_fq0cl"), ExtResource("7_sxkr1"), ExtResource("7_fq0cl"), ExtResource("6_0sclb")])
+
+[node name="Lighthouse" parent="." instance=ExtResource("1_idj7w")]
+position = Vector2(989, 784)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Margin" type="MarginContainer" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBox" type="VBoxContainer" parent="UI/Margin"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="UI/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9774236, 0.8055433, 0.60935736, 1)
+theme_override_fonts/font = ExtResource("18_fq0cl")
+theme_override_font_sizes/font_size = 52
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Energy" type="ProgressBar" parent="UI/Margin/VBox"]
+visible = false
+layout_mode = 2
+
+[node name="WaterBG" type="AnimatedSprite2D" parent="."]
+z_index = -100
+position = Vector2(-20, -20)
+sprite_frames = SubResource("SpriteFrames_kln2b")
+autoplay = "default"
+frame_progress = 0.20445994
+centered = false
