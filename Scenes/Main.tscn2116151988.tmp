@@ -1,0 +1,74 @@
+[gd_scene load_steps=22 format=3 uid="uid://rm0h5yygost6"]
+
+[ext_resource type="PackedScene" uid="uid://cos4lasvbucws" path="res://Scenes/lighthouse.tscn" id="1_idj7w"]
+[ext_resource type="Script" uid="uid://2lw0pb2ks15h" path="res://Scenes/main.gd" id="1_kln2b"]
+[ext_resource type="PackedScene" uid="uid://cpi200ed2a65v" path="res://Scenes/ship.tscn" id="2_kln2b"]
+[ext_resource type="Texture2D" uid="uid://4gv1l2qkbakw" path="res://Explosion frames/pixil-frame-0.png" id="3_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://0jwp0lpa5lva" path="res://Explosion frames/pixil-frame-1.png" id="4_bmxlf"]
+[ext_resource type="Texture2D" uid="uid://7v3hc6gaae48" path="res://Background Animation/background-frame-0.png" id="4_v1gob"]
+[ext_resource type="Texture2D" uid="uid://c7jjad2tv0ryx" path="res://Explosion frames/pixil-frame-2.png" id="5_4kpch"]
+[ext_resource type="Texture2D" uid="uid://deqeqm5lkxpee" path="res://Background Animation/background-frame-1.png" id="5_jw32o"]
+[ext_resource type="Texture2D" uid="uid://dp4f31mqcr1g3" path="res://Energy Bar/Energy Bar Version1.png" id="6_0sclb"]
+[ext_resource type="Texture2D" uid="uid://dnqmeu6id4ab5" path="res://Background Animation/background-frame-2.png" id="6_50glp"]
+[ext_resource type="Texture2D" uid="uid://dq48q1ngcuhty" path="res://Energy Bar/Energy Bar -1.png" id="7_fq0cl"]
+[ext_resource type="Texture2D" uid="uid://dgfug4rcvpnym" path="res://Energy Bar/Energy Bar -2.png" id="7_sxkr1"]
+[ext_resource type="Texture2D" uid="uid://cmtaylw273ppp" path="res://Energy Bar/Energy Bar -3.png" id="8_fq0cl"]
+[ext_resource type="Texture2D" uid="uid://bg47isemp8iny" path="res://Energy Bar/Energy Bar -4.png" id="9_hwpts"]
+[ext_resource type="Texture2D" uid="uid://bk62hcbob8nx8" path="res://Energy Bar/Energy Bar -5.png" id="10_jyqft"]
+[ext_resource type="Texture2D" uid="uid://dwr6p0a11meaf" path="res://Energy Bar/Energy Bar -6.png" id="11_3tgeq"]
+[ext_resource type="Texture2D" uid="uid://bw020fhmc7x4u" path="res://Energy Bar/Energy Bar -7.png" id="12_c4ay3"]
+[ext_resource type="Texture2D" uid="uid://dcdibt8hkqgxf" path="res://Energy Bar/Energy Bar -8.png" id="13_aht7i"]
+[ext_resource type="Texture2D" uid="uid://dutb737dsf8qj" path="res://Energy Bar/Energy Bar -9.png" id="14_5jffn"]
+[ext_resource type="Texture2D" uid="uid://dkm3biqqmknm" path="res://Energy Bar/Energy Bar Empty.png" id="15_kpo4j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kln2b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_v1gob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jw32o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_50glp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Main" type="Node2D"]
+position = Vector2(20, 20)
+script = ExtResource("1_kln2b")
+boat_scene = ExtResource("2_kln2b")
+explosion_frames = Array[Texture2D]([ExtResource("3_vy5pj"), ExtResource("4_bmxlf"), ExtResource("5_4kpch")])
+energy_frames = Array[Texture2D]([ExtResource("15_kpo4j"), ExtResource("14_5jffn"), ExtResource("13_aht7i"), ExtResource("12_c4ay3"), ExtResource("11_3tgeq"), ExtResource("10_jyqft"), ExtResource("9_hwpts"), ExtResource("8_fq0cl"), ExtResource("7_sxkr1"), ExtResource("7_fq0cl"), ExtResource("6_0sclb")])
+
+[node name="Lighthouse" parent="." instance=ExtResource("1_idj7w")]
+position = Vector2(987, 920)
+scale = Vector2(0.8, 0.8)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Margin" type="MarginContainer" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBox" type="VBoxContainer" parent="UI/Margin"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="UI/Margin/VBox"]
+layout_mode = 2
+
+[node name="Energy" type="ProgressBar" parent="UI/Margin/VBox"]
+visible = false
+layout_mode = 2
+
+[node name="WaterBG" type="AnimatedSprite2D" parent="."]
+z_index = -100
+position = Vector2(-20, -20)
+scale = Vector2(11.99375, 12.033334)
+sprite_frames = SubResource("SpriteFrames_kln2b")
+autoplay = "default"
+centered = false
